@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Futuristic Digital Card</title>
-
+<title>Futuristic Digital Card</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --blue:#4f7cff;
@@ -20,12 +18,12 @@ body{
   margin:0;
   font-family:'Orbitron',sans-serif;
   color:var(--text);
-  overflow-x:hidden;
   text-align:center;
   background:var(--bg);
+  overflow-x:hidden;
 }
 
-/* Background video + fallback */
+/* Background video (desktop) */
 .bg-video{
   position:fixed;
   top:0; left:0;
@@ -34,6 +32,7 @@ body{
   z-index:-2;
   filter:brightness(0.7) contrast(1.2);
 }
+/* Fallback image (mobile) */
 .bg-fallback{
   display:none;
   position:fixed;
@@ -43,7 +42,7 @@ body{
   z-index:-2;
 }
 
-/* Overlay for contrast */
+/* Overlay */
 .overlay{
   position:fixed;
   inset:0;
@@ -60,8 +59,6 @@ body{
   align-items:center;
   justify-content:center;
   padding:16px;
-  text-align:center;
-  perspective:1000px;
 }
 
 /* Content container */
@@ -69,22 +66,18 @@ body{
   width:90%;
   max-width:460px;
   margin:auto;
-  padding:12px;
-  transform-style:preserve-3d;
 }
 
-/* Hologram Logo */
+/* Logo */
 .logo{
   width:140px;
   margin-bottom:16px;
+  cursor:pointer;
   transform-origin:center;
   filter:
     drop-shadow(0 0 20px rgba(79,124,255,0.8))
     drop-shadow(0 0 30px rgba(0,229,255,0.6));
-  position:relative;
   animation:holoFloat 4s ease-in-out infinite, holoGlow 2s alternate infinite;
-  transform-style:preserve-3d;
-  cursor:pointer;
 }
 @keyframes holoFloat{
   0%{transform:translateY(0px) rotateY(0deg)}
@@ -95,19 +88,6 @@ body{
   0%{filter:drop-shadow(0 0 25px rgba(79,124,255,0.7))}
   100%{filter:drop-shadow(0 0 55px rgba(0,229,255,0.9))}
 }
-.logo::after{
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:linear-gradient(120deg, transparent, rgba(0,229,255,.5), transparent);
-  mix-blend-mode:screen;
-  animation:holoScan 3s linear infinite;
-}
-@keyframes holoScan{
-  0%{transform:translateX(-120%)}
-  100%{transform:translateX(120%)}
-}
 
 /* Typing text */
 .type{
@@ -117,9 +97,7 @@ body{
   letter-spacing:.06em;
   color:var(--cyan);
   margin-bottom:10px;
-  text-shadow:
-    0 2px 12px rgba(0,229,255,.7),
-    0 0 22px rgba(79,124,255,.6);
+  text-shadow:0 2px 12px rgba(0,229,255,.7),0 0 22px rgba(79,124,255,.6);
 }
 
 /* Title & tagline */
@@ -138,26 +116,25 @@ h1{
   text-shadow:0 2px 12px rgba(0,229,255,.4);
 }
 
-/* Buttons grid */
+/* Buttons */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-bottom:12px;
   width:100%;
 }
 .btn{
-  padding:12px 10px;
+  padding:12px;
   border-radius:12px;
   border:1px solid rgba(0,229,255,.7);
   background:rgba(0,0,0,.6);
   color:var(--cyan);
   text-decoration:none;
-  font-size:0.9rem;
   font-weight:700;
-  transition:transform .12s ease, box-shadow .12s ease, background .3s;
-  box-shadow:0 6px 20px rgba(0,229,255,.2);
+  font-size:0.9rem;
   text-align:center;
+  box-shadow:0 6px 20px rgba(0,229,255,.2);
+  transition: transform .12s, box-shadow .12s, background .3s;
 }
 .btn:hover{
   transform:translateY(-2px) scale(1.05);
@@ -171,18 +148,26 @@ h1{
   border:none;
 }
 
-/* Mobile adjustments */
+/* Mobile responsiveness */
 @media (max-width:480px){
   h1{ font-size:1.4rem; }
   .tagline{ font-size:0.85rem; }
   .type{ font-size:1rem; }
   .grid{ grid-template-columns:1fr; gap:8px; }
+  .btn, .save{ width:100%; }
   .logo{ width:120px; }
+}
+
+/* Hide video on small screens, show fallback */
+@media (max-width:768px){
+  .bg-video{ display:none; }
+  .bg-fallback{ display:block; }
 }
 </style>
 </head>
 <body>
 
+<!-- Background -->
 <video class="bg-video" autoplay muted loop playsinline>
   <source src="bg.mp4" type="video/mp4">
 </video>
@@ -193,7 +178,7 @@ h1{
 <div class="center">
   <div class="content">
 
-    <!-- Logo triggers voice -->
+    <!-- Logo -->
     <img src="logo.png" alt="Logo" class="logo" id="logo">
 
     <!-- Typing text -->
@@ -202,6 +187,7 @@ h1{
     <h1>Your Futuristic Brand</h1>
     <div class="tagline">We build smart digital experiences</div>
 
+    <!-- Buttons -->
     <div class="grid">
       <a class="btn" href="tel:+447877810779">📞 Call</a>
       <a class="btn" href="mailto:jas@jappfinancial.co.uk">📧 Email</a>
@@ -219,41 +205,20 @@ h1{
 
 <script>
 // Typing effect
-const lines = [
-  "JAPP Financial",
-  "Your Futuristic Brand",
-  "We build smart digital experiences"
-];
-let i=0, j=0, del=false;
+const lines=["JAPP Financial","Your Futuristic Brand","We build smart digital experiences"];
+let i=0,j=0,del=false;
 const el=document.getElementById("type");
-
 (function loop(){
   const text=lines[i];
-  if(!del){
-    el.textContent=text.slice(0,++j);
-    if(j===text.length) setTimeout(()=>del=true,1000);
-  } else {
-    el.textContent=text.slice(0,--j);
-    if(j===0){ del=false; i=(i+1)%lines.length; }
-  }
+  if(!del){ el.textContent=text.slice(0,++j); if(j===text.length) setTimeout(()=>del=true,1000);}
+  else{ el.textContent=text.slice(0,--j); if(j===0){ del=false;i=(i+1)%lines.length; } }
   setTimeout(loop, del?40:60);
 })();
 
-// Logo tap triggers speech
-const logo = document.getElementById("logo");
-logo.addEventListener("click", ()=>{
-  const msg = new SpeechSynthesisUtterance(
-    "Welcome to JAPP Financial futuristic digital card. We build smart AI powered digital experiences. Call, email, or visit our website to connect instantly."
-  );
-  msg.lang = "en-US";
-  speechSynthesis.speak(msg);
-});
-
-// Fallback for video on mobile
-const video = document.querySelector(".bg-video");
-video.addEventListener('error', ()=>{
-  video.style.display = "none";
-  document.querySelector(".bg-fallback").style.display = "block";
+// Logo tap triggers voice
+document.getElementById("logo").addEventListener("click",()=>{
+  const msg=new SpeechSynthesisUtterance("Welcome to JAPP Financial futuristic digital card. We build smart AI powered digital experiences. Call, email, or visit our website to connect instantly.");
+  msg.lang="en-US"; speechSynthesis.speak(msg);
 });
 </script>
 
