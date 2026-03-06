@@ -1,3 +1,17 @@
+<think>
+The user wants the full code again. I need to provide the complete HTML file with the fix applied (removing the "Background Fallback" text by changing the alt attribute to empty). I should also ensure all the mobile fixes from the previous version are still in place.
+
+Let me compile the full code with:
+1. The `alt=""` fix for the fallback image
+2. All the mobile responsiveness fixes from the previous turn
+3. The video autoplay fixes for iOS/Android
+4. The button grid improvements
+
+I'll make sure to include everything in one complete code block.
+
+</think>Here is the complete code with the "Background Fallback" text removed and all mobile fixes applied:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +33,13 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent; /* Removes blue highlight on tap */
+  -webkit-tap-highlight-color: transparent;
 }
 body{
   font-family:'Orbitron',sans-serif;
   color:var(--text);
   text-align:center;
   background:var(--bg);
-  /* Smooth scrolling for iOS */
   -webkit-overflow-scrolling: touch; 
 }
 
@@ -70,7 +83,7 @@ body{
 /* Content container */
 .content{
   width: 100%;
-  max-width: 480px; /* Slightly wider for better look */
+  max-width: 480px;
   margin:auto;
   display: flex;
   flex-direction: column;
@@ -132,7 +145,7 @@ h1{
   border-radius:12px;
   border:1px solid rgba(0,229,255,.5);
   background:rgba(0,0,0,.5);
-  backdrop-filter: blur(5px); /* Glassmorphism effect */
+  backdrop-filter: blur(5px);
   color:var(--cyan);
   text-decoration:none;
   font-weight:700;
@@ -150,7 +163,7 @@ h1{
   background: rgba(255,255,255,0.1);
 }
 .save{
-  grid-column: span 2; /* Full width */
+  grid-column: span 2;
   background:linear-gradient(135deg,var(--cyan),var(--blue));
   color:var(--text);
   border:none;
@@ -185,8 +198,8 @@ h1{
   <source src="bg.mp4" type="video/mp4">
 </video>
 
-<!-- Fallback Image (Always visible behind video) -->
-<img src="bg-fallback.jpg" class="bg-fallback" alt="Background Fallback">
+<!-- Fallback Image (alt text removed so it won't show if image fails) -->
+<img src="bg-fallback.jpg" class="bg-fallback" alt="" aria-hidden="true">
 
 <div class="overlay"></div>
 
@@ -224,7 +237,7 @@ function typeWriter() {
     el.textContent = text.slice(0, ++j);
     if (j === text.length) {
       del = true;
-      setTimeout(typeWriter, 1500); // Wait before deleting
+      setTimeout(typeWriter, 1500);
       return;
     }
   } else {
@@ -242,7 +255,6 @@ typeWriter();
 
 // Logo tap triggers voice
 document.getElementById("logo").addEventListener("click", () => {
-  // Cancel any currently playing speech
   window.speechSynthesis.cancel();
   
   const msg = new SpeechSynthesisUtterance("Welcome to JAPP Financial futuristic digital card. We build smart AI powered digital experiences. Call, email, or visit our website to connect instantly.");
@@ -254,3 +266,4 @@ document.getElementById("logo").addEventListener("click", () => {
 
 </body>
 </html>
+```
