@@ -1,255 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Futuristic Digital Card</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JAPP Financial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --blue:#4f7cff;
-  --cyan:#00e5ff;
-  --text:#f0f0f0;
-  --bg:#020617;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-*{box-sizing:border-box;}
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
+
 body{
-  font-family:'Orbitron',sans-serif;
-  color:var(--text);
-  text-align:center;
-  background:var(--bg);
-  -webkit-overflow-scrolling: touch; 
+font-family:'Orbitron',sans-serif;
+background:#000;
+color:white;
+text-align:center;
+overflow-x:hidden;
 }
 
-/* Background Video & Image */
-.bg-video, .bg-fallback{
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  object-fit:cover;
-  z-index:-2;
-}
+/* Background Video */
+
 .bg-video{
-  filter:brightness(0.6) contrast(1.1);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
 }
-.bg-fallback{
-  /* Ensure fallback is always there in case video fails */
-  display: block; 
-  z-index: -2;
-}
+
+/* Overlay */
+
 .overlay{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.4));
-  z-index:-1;
-  pointer-events:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+z-index:-1;
 }
 
-/* Center content */
-.center{
-  min-height: 100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding: 20px;
-  /* Handle iPhone Notch */
-  padding-top: max(20px, env(safe-area-inset-top));
-  padding-bottom: max(20px, env(safe-area-inset-bottom));
-}
+/* Main Container */
 
-/* Content container */
-.content{
-  width: 100%;
-  max-width: 480px;
-  margin:auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container{
+width:100%;
+max-width:420px;
+margin:auto;
+padding:25px 18px;
 }
 
 /* Logo */
+
 .logo{
-  width: 140px;
-  height: auto;
-  margin-bottom: 20px;
-  cursor:pointer;
-  filter: drop-shadow(0 0 15px rgba(79,124,255,0.8));
-  animation: holoFloat 4s ease-in-out infinite;
-}
-@keyframes holoFloat{
-  0%{transform:translateY(0px);}
-  50%{transform:translateY(-10px);}
-  100%{transform:translateY(0px);}
+width:140px;
+margin:auto;
+display:block;
+margin-bottom:20px;
+cursor:pointer;
+
+filter:
+drop-shadow(0 0 15px #00e5ff)
+drop-shadow(0 0 35px #4f7cff);
+
+animation:float 4s ease-in-out infinite;
 }
 
-/* Typing text */
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+
+}
+
+/* Text */
+
 .type{
-  min-height:36px;
-  font-size:1.1rem;
-  font-weight:800;
-  letter-spacing:.06em;
-  color:var(--cyan);
-  margin-bottom:12px;
-  text-shadow:0 2px 12px rgba(0,229,255,.7);
+font-size:18px;
+margin-bottom:10px;
+min-height:24px;
+color:#00e5ff;
 }
 
-/* Title & tagline */
-h1{ 
-  margin:8px 0 4px; 
-  font-size:1.8rem; 
-  letter-spacing:.08em; 
-  color:var(--cyan); 
-  text-shadow:0 2px 12px rgba(0,229,255,.6);
-  line-height: 1.2;
-}
-.tagline{ 
-  font-size:1rem; 
-  font-weight:600; 
-  color:var(--text); 
-  margin:6px 0 24px; 
-  text-shadow:0 2px 12px rgba(0,229,255,.4); 
+h1{
+font-size:26px;
+margin-bottom:6px;
 }
 
-/* Buttons Grid */
-.grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns */
-  gap:12px;
-  width: 100%;
+.tagline{
+font-size:14px;
+margin-bottom:25px;
+opacity:.85;
 }
+
+/* Buttons */
+
+.buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+/* Button Style */
+
 .btn{
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(0,229,255,.5);
-  background:rgba(0,0,0,.5);
-  backdrop-filter: blur(5px);
-  color:var(--cyan);
-  text-decoration:none;
-  font-weight:700;
-  font-size:0.95rem;
-  text-align:center;
-  box-shadow:0 4px 15px rgba(0,0,0,0.3);
-  transition: transform .1s, background .3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+width:100%;
+padding:14px;
+
+border-radius:12px;
+
+text-decoration:none;
+font-size:15px;
+font-weight:600;
+
+color:white;
+
+background:rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,0.2);
+
+backdrop-filter:blur(10px);
+
+transition:.2s;
+
 }
-.btn:active{
-  transform: scale(0.96);
-  background: rgba(255,255,255,0.1);
+
+.btn:hover{
+transform:translateY(-3px);
+background:rgba(255,255,255,0.15);
 }
+
+/* Save Contact Button */
+
 .save{
-  grid-column: span 2;
-  background:linear-gradient(135deg,var(--cyan),var(--blue));
-  color:var(--text);
-  border:none;
-  font-size: 1rem;
-  box-shadow: 0 0 20px rgba(0,229,255,0.3);
+grid-column:span 2;
+background:linear-gradient(135deg,#00e5ff,#4f7cff);
+border:none;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 400px) {
-  h1{ font-size:1.5rem; }
-  .tagline{ font-size:0.9rem; }
-  .type{ font-size:0.95rem; }
-  .logo{ width: 110px; }
-  .btn{ font-size: 0.85rem; padding: 12px; }
+/* Mobile Fix */
+
+@media (max-width:480px){
+
+.container{
+padding:25px 16px;
 }
 
-/* Tablet/Small Phone specific */
-@media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr; /* Stack buttons vertically on very small screens */
-  }
-  .save {
-    grid-column: span 1;
-  }
+.buttons{
+grid-template-columns:1fr;
 }
+
+.save{
+grid-column:span 1;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
-<!-- Video Background -->
 <video class="bg-video" autoplay muted loop playsinline>
-  <source src="bg.mp4" type="video/mp4">
+<source src="bg.mp4" type="video/mp4">
 </video>
-
-<!-- Fallback Image (alt text removed so it won't show if image fails) -->
-<img src="bg-fallback.jpg" class="bg-fallback" alt="" aria-hidden="true">
 
 <div class="overlay"></div>
 
-<div class="center">
-  <div class="content">
-    <img src="logo.png" class="logo" id="logo" alt="Logo">
-    <div id="type" class="type"></div>
-    <h1>Your Futuristic Brand</h1>
-    <div class="tagline">We build smart digital experiences</div>
+<div class="container">
 
-    <div class="grid">
-      <a class="btn" href="tel:+447877810779">📞 Call</a>
-      <a class="btn" href="mailto:jas@jappfinancial.co.uk">📧 Email</a>
-      <a class="btn" href="https://x.com/yourhandle" target="_blank">🐦 X</a>
-      <a class="btn" href="https://facebook.com/yourpage" target="_blank">📘 Facebook</a>
-      <a class="btn" href="https://www.instagram.com/japp_financial" target="_blank">📸 Instagram</a>
-      <a class="btn" href="https://yourwebsite.com" target="_blank">🌐 Website</a>
-      <a class="btn" href="https://linkedin.com/in/yourprofile" target="_blank">💼 LinkedIn</a>
-      <a class="btn" href="https://wa.me/447877810779" target="_blank">💬 WhatsApp</a>
-      <a class="btn save" href="contact.vcf">💾 Save Contact</a>
-    </div>
-  </div>
+<img src="logo.png" class="logo" id="logo">
+
+<div class="type" id="type"></div>
+
+<h1>JAPP Financial</h1>
+
+<div class="tagline">
+We build smart digital experiences
+</div>
+
+<div class="buttons">
+
+<a class="btn" href="tel:+447877810779">📞 Call</a>
+
+<a class="btn" href="mailto:jas@jappfinancial.co.uk">📧 Email</a>
+
+<a class="btn" href="https://x.com" target="_blank">🐦 X</a>
+
+<a class="btn" href="https://facebook.com" target="_blank">📘 Facebook</a>
+
+<a class="btn" href="https://instagram.com/japp_financial" target="_blank">📸 Instagram</a>
+
+<a class="btn" href="https://yourwebsite.com" target="_blank">🌐 Website</a>
+
+<a class="btn" href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
+
+<a class="btn" href="https://wa.me/447877810779" target="_blank">💬 WhatsApp</a>
+
+<a class="btn save" href="contact.vcf">💾 Save Contact</a>
+
+</div>
+
 </div>
 
 <script>
-// Typing effect
-const lines=["JAPP Financial","Your Futuristic Brand","We build smart digital experiences"];
-let i=0,j=0,del=false;
+
+/* typing animation */
+
+const lines=[
+"JAPP Financial",
+"AI Powered Digital Card",
+"Tap logo to hear voice"
+];
+
+let i=0;
+let j=0;
+let deleting=false;
+
 const el=document.getElementById("type");
 
-function typeWriter() {
-  const text = lines[i];
-  
-  if (!del) {
-    el.textContent = text.slice(0, ++j);
-    if (j === text.length) {
-      del = true;
-      setTimeout(typeWriter, 1500);
-      return;
-    }
-  } else {
-    el.textContent = text.slice(0, --j);
-    if (j === 0) {
-      del = false;
-      i = (i + 1) % lines.length;
-    }
-  }
-  setTimeout(typeWriter, del ? 40 : 60);
+function type(){
+
+let text=lines[i];
+
+if(!deleting){
+
+el.textContent=text.slice(0,++j);
+
+if(j===text.length){
+
+deleting=true;
+setTimeout(type,1200);
+return;
+
 }
 
-// Start typing
-typeWriter();
+}else{
 
-// Logo tap triggers voice
-document.getElementById("logo").addEventListener("click", () => {
-  window.speechSynthesis.cancel();
-  
-  const msg = new SpeechSynthesisUtterance("Welcome to JAPP Financial futuristic digital card. We build smart AI powered digital experiences. Call, email, or visit our website to connect instantly.");
-  msg.lang = "en-US";
-  msg.rate = 1;
-  window.speechSynthesis.speak(msg);
-});
+el.textContent=text.slice(0,--j);
+
+if(j===0){
+
+deleting=false;
+i=(i+1)%lines.length;
+
+}
+
+}
+
+setTimeout(type,60);
+
+}
+
+type();
+
+
+/* Voice when logo tapped */
+
+document.getElementById("logo").onclick=function(){
+
+const msg=new SpeechSynthesisUtterance(
+"Welcome to JAPP Financial digital card. Tap any button to connect instantly."
+);
+
+speechSynthesis.speak(msg);
+
+}
+
 </script>
 
 </body>
 </html>
-```
