@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>JAPP Financial</title>
 
@@ -19,13 +20,13 @@ box-sizing:border-box;
 
 body{
 font-family:'Orbitron',sans-serif;
-background:#000;
 color:white;
 text-align:center;
 overflow-x:hidden;
+background:black;
 }
 
-/* Background Video */
+/* VIDEO BACKGROUND */
 
 .bg-video{
 position:fixed;
@@ -37,7 +38,7 @@ object-fit:cover;
 z-index:-2;
 }
 
-/* Overlay */
+/* DARK OVERLAY */
 
 .overlay{
 position:fixed;
@@ -49,133 +50,134 @@ background:rgba(0,0,0,0.45);
 z-index:-1;
 }
 
-/* Main Container */
+/* MAIN CARD */
 
 .container{
-width:100%;
+
+width:92%;
 max-width:420px;
+
 margin:auto;
-padding:25px 18px;
+padding-top:40px;
+padding-bottom:40px;
+
 }
 
-/* Logo */
+/* LOGO */
 
 .logo{
-width:140px;
+width:150px;
 margin:auto;
 display:block;
 margin-bottom:20px;
 cursor:pointer;
 
 filter:
-drop-shadow(0 0 15px #00e5ff)
-drop-shadow(0 0 35px #4f7cff);
+drop-shadow(0 0 20px #00e5ff)
+drop-shadow(0 0 40px #4f7cff);
 
-animation:float 4s ease-in-out infinite;
+animation:float 4s infinite ease-in-out;
 }
 
 @keyframes float{
 
 0%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
+50%{transform:translateY(-12px)}
 100%{transform:translateY(0)}
 
 }
 
-/* Text */
+/* TEXT */
 
 .type{
 font-size:18px;
 margin-bottom:10px;
-min-height:24px;
 color:#00e5ff;
+min-height:24px;
 }
 
 h1{
 font-size:26px;
-margin-bottom:6px;
+margin-bottom:8px;
 }
 
 .tagline{
 font-size:14px;
 margin-bottom:25px;
-opacity:.85;
+opacity:.9;
 }
 
-/* Buttons */
+/* BUTTON GRID */
 
-.buttons{
+.grid{
+
 display:grid;
+
 grid-template-columns:1fr 1fr;
+
 gap:12px;
+
 }
 
-/* Button Style */
+/* BUTTON */
 
 .btn{
 
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 
-width:100%;
 padding:14px;
 
 border-radius:12px;
 
 text-decoration:none;
+
 font-size:15px;
-font-weight:600;
 
 color:white;
 
 background:rgba(255,255,255,0.08);
 
-border:1px solid rgba(255,255,255,0.2);
+border:1px solid rgba(255,255,255,0.25);
 
 backdrop-filter:blur(10px);
 
-transition:.2s;
+transition:0.2s;
 
 }
 
 .btn:hover{
+
 transform:translateY(-3px);
+
 background:rgba(255,255,255,0.15);
+
 }
 
-/* Save Contact Button */
+/* SAVE BUTTON */
 
 .save{
+
 grid-column:span 2;
+
 background:linear-gradient(135deg,#00e5ff,#4f7cff);
+
 border:none;
-}
 
-/* Mobile Fix */
-
-@media (max-width:480px){
-
-.container{
-padding:25px 16px;
-}
-
-.buttons{
-grid-template-columns:1fr;
-}
-
-.save{
-grid-column:span 1;
-}
+color:white;
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<video class="bg-video" autoplay muted loop playsinline>
+<!-- VIDEO -->
+
+<video class="bg-video" autoplay muted loop playsinline preload="auto" poster="bg.jpg">
 <source src="bg.mp4" type="video/mp4">
 </video>
 
@@ -185,7 +187,7 @@ grid-column:span 1;
 
 <img src="logo.png" class="logo" id="logo">
 
-<div class="type" id="type"></div>
+<div id="type" class="type"></div>
 
 <h1>JAPP Financial</h1>
 
@@ -193,7 +195,7 @@ grid-column:span 1;
 We build smart digital experiences
 </div>
 
-<div class="buttons">
+<div class="grid">
 
 <a class="btn" href="tel:+447877810779">📞 Call</a>
 
@@ -244,7 +246,9 @@ el.textContent=text.slice(0,++j);
 if(j===text.length){
 
 deleting=true;
+
 setTimeout(type,1200);
+
 return;
 
 }
@@ -256,6 +260,7 @@ el.textContent=text.slice(0,--j);
 if(j===0){
 
 deleting=false;
+
 i=(i+1)%lines.length;
 
 }
@@ -268,13 +273,12 @@ setTimeout(type,60);
 
 type();
 
-
-/* Voice when logo tapped */
+/* logo voice */
 
 document.getElementById("logo").onclick=function(){
 
 const msg=new SpeechSynthesisUtterance(
-"Welcome to JAPP Financial digital card. Tap any button to connect instantly."
+"Welcome to JAPP Financial digital card."
 );
 
 speechSynthesis.speak(msg);
