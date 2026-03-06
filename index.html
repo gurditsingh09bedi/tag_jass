@@ -12,7 +12,6 @@
   --text:#f0f0f0;
   --bg:#020617;
 }
-
 *{box-sizing:border-box;}
 body{
   margin:0;
@@ -23,7 +22,7 @@ body{
   overflow-x:hidden;
 }
 
-/* Background video (desktop) */
+/* Background */
 .bg-video{
   position:fixed;
   top:0; left:0;
@@ -32,8 +31,6 @@ body{
   z-index:-2;
   filter:brightness(0.7) contrast(1.2);
 }
-
-/* Fallback image (mobile) */
 .bg-fallback{
   display:none;
   position:fixed;
@@ -42,12 +39,10 @@ body{
   object-fit:cover;
   z-index:-2;
 }
-
-/* Overlay */
 .overlay{
   position:fixed;
   inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.25));
+  background:linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.25));
   z-index:-1;
   pointer-events:none;
 }
@@ -74,10 +69,8 @@ body{
   width:140px;
   margin-bottom:16px;
   cursor:pointer;
-  transform-origin:center;
-  filter:
-    drop-shadow(0 0 20px rgba(79,124,255,0.8))
-    drop-shadow(0 0 30px rgba(0,229,255,0.6));
+  filter:drop-shadow(0 0 20px rgba(79,124,255,0.8))
+        drop-shadow(0 0 30px rgba(0,229,255,0.6));
   animation:holoFloat 4s ease-in-out infinite, holoGlow 2s alternate infinite;
 }
 @keyframes holoFloat{
@@ -102,20 +95,8 @@ body{
 }
 
 /* Title & tagline */
-h1{
-  margin:8px 0 4px;
-  font-size:1.6rem;
-  letter-spacing:.08em;
-  color:var(--cyan);
-  text-shadow:0 2px 12px rgba(0,229,255,.6), 0 0 28px rgba(79,124,255,.5);
-}
-.tagline{
-  font-size:0.95rem;
-  font-weight:600;
-  color:var(--text);
-  margin:6px 0 18px;
-  text-shadow:0 2px 12px rgba(0,229,255,.4);
-}
+h1{ margin:8px 0 4px; font-size:1.6rem; letter-spacing:.08em; color:var(--cyan); text-shadow:0 2px 12px rgba(0,229,255,.6), 0 0 28px rgba(79,124,255,.5);}
+.tagline{ font-size:0.95rem; font-weight:600; color:var(--text); margin:6px 0 18px; text-shadow:0 2px 12px rgba(0,229,255,.4); }
 
 /* Buttons */
 .grid{
@@ -149,7 +130,7 @@ h1{
   border:none;
 }
 
-/* Mobile responsiveness */
+/* Mobile adjustments */
 @media (max-width:480px){
   h1{ font-size:1.4rem; }
   .tagline{ font-size:0.85rem; }
@@ -158,8 +139,7 @@ h1{
   .btn, .save{ width:100%; }
   .logo{ width:120px; }
 }
-
-/* Hide video on small screens, show fallback */
+/* Hide video on mobile, show fallback */
 @media (max-width:768px){
   .bg-video{ display:none; }
   .bg-fallback{ display:block; }
@@ -168,27 +148,20 @@ h1{
 </head>
 <body>
 
-<!-- Background -->
 <video class="bg-video" autoplay muted loop playsinline>
   <source src="bg.mp4" type="video/mp4">
 </video>
-<img src="bg-fallback.jpg" alt="Background" class="bg-fallback">
+<img src="bg-fallback.jpg" class="bg-fallback" alt="Background">
 
 <div class="overlay"></div>
 
 <div class="center">
   <div class="content">
-
-    <!-- Logo triggers audio -->
-    <img src="logo.png" alt="Logo" class="logo" id="logo">
-
-    <!-- Typing text -->
+    <img src="logo.png" class="logo" id="logo" alt="Logo">
     <div id="type" class="type"></div>
-
     <h1>Your Futuristic Brand</h1>
     <div class="tagline">We build smart digital experiences</div>
 
-    <!-- Buttons -->
     <div class="grid">
       <a class="btn" href="tel:+447877810779">📞 Call</a>
       <a class="btn" href="mailto:jas@jappfinancial.co.uk">📧 Email</a>
