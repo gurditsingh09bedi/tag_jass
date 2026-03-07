@@ -53,14 +53,11 @@ z-index:-1;
 /* MAIN CARD */
 
 .container{
-
 width:92%;
 max-width:420px;
-
 margin:auto;
 padding-top:40px;
 padding-bottom:40px;
-
 }
 
 /* LOGO */
@@ -80,11 +77,9 @@ animation:float 4s infinite ease-in-out;
 }
 
 @keyframes float{
-
 0%{transform:translateY(0)}
 50%{transform:translateY(-12px)}
 100%{transform:translateY(0)}
-
 }
 
 /* TEXT */
@@ -110,63 +105,40 @@ opacity:.9;
 /* BUTTON GRID */
 
 .grid{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:12px;
-
 }
 
 /* BUTTON */
 
 .btn{
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 padding:14px;
-
 border-radius:12px;
-
 text-decoration:none;
-
 font-size:15px;
-
 color:white;
-
 background:rgba(255,255,255,0.08);
-
 border:1px solid rgba(255,255,255,0.25);
-
 backdrop-filter:blur(10px);
-
 transition:0.2s;
-
 }
 
 .btn:hover{
-
 transform:translateY(-3px);
-
 background:rgba(255,255,255,0.15);
-
 }
 
 /* SAVE BUTTON */
 
 .save{
-
 grid-column:span 2;
-
 background:linear-gradient(135deg,#00e5ff,#4f7cff);
-
 border:none;
-
 color:white;
-
 }
 
 </style>
@@ -175,9 +147,9 @@ color:white;
 
 <body>
 
-<!-- VIDEO -->
+<!-- VIDEO (NO CAPTION / NO POSTER) -->
 
-<video class="bg-video" autoplay muted loop playsinline preload="auto" poster="bg.jpg">
+<video class="bg-video" autoplay muted loop playsinline preload="auto">
 <source src="bg.mp4" type="video/mp4">
 </video>
 
@@ -192,7 +164,7 @@ color:white;
 <h1>JAPP Financial</h1>
 
 <div class="tagline">
-We build smart digital experiences
+Your Money. Your Growth. Our Expertise
 </div>
 
 <div class="grid">
@@ -200,12 +172,6 @@ We build smart digital experiences
 <a class="btn" href="tel:+447877810779">📞 Call</a>
 
 <a class="btn" href="mailto:jas@jappfinancial.co.uk">📧 Email</a>
-
-<a class="btn" href="https://x.com" target="_blank">🐦 X</a>
-
-<a class="btn" href="https://facebook.com" target="_blank">📘 Facebook</a>
-
-<a class="btn" href="https://instagram.com/japp_financial" target="_blank">📸 Instagram</a>
 
 <a class="btn" href="https://yourwebsite.com" target="_blank">🌐 Website</a>
 
@@ -248,7 +214,6 @@ if(j===text.length){
 deleting=true;
 
 setTimeout(type,1200);
-
 return;
 
 }
@@ -260,7 +225,6 @@ el.textContent=text.slice(0,--j);
 if(j===0){
 
 deleting=false;
-
 i=(i+1)%lines.length;
 
 }
